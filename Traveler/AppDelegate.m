@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "GH_TabBarViewController.h"
+#import "GH_LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,9 +18,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    GH_TabBarViewController * tabBar = [GH_TabBarViewController new];
+//    self.window.rootViewController = tabBar;
+    GH_LoginViewController * loginVC = [GH_LoginViewController new];
+    GH_NavViewController * nav = [[GH_NavViewController alloc]initWithRootViewController:loginVC];
+    self.window.rootViewController = tabBar;
+    [self ThirdSet];
+    
     return YES;
 }
 
+- (void)ThirdSet{
+    /**
+     控制键盘
+     */
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    //控制整个功能是否启用。
+    manager.enable = YES;
+    //控制点击背景是否收起键盘
+    manager.shouldResignOnTouchOutside = YES;
+    
+    /*注册微信*/
+    //    [WXApi registerApp:@"wx7b6dedef25441b26" enableMTA:YES];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
